@@ -16,7 +16,7 @@ export class DiceRoller {
 
     @logDiceRolls()
     static getD4(times: number): number {
-        return this.getResult(times, 4)
+        return this.getResult(times, 4);
     }
 
     @logDiceRolls()
