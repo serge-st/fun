@@ -16,6 +16,6 @@ export class Warrior {
         // if (this.level > 1) return // array from rolls with 1st max
         if (this.level > 1) return 2 // test
         if (this.level < 1) throw new Error('Level cannot be less that 1');
-        throw new Error('Unknown error')
+        throw new Error('Unknown error');
     }
 }

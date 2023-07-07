@@ -5,10 +5,6 @@ export class DiceRoller {
         return Math.ceil(Math.random() * value);
     }
 
-    static test(): void {
-        this.rollD(4)
-    }
-
     private static getResult(rollsNumber: number, diceValue: DiceValues): number {
         const rolls = Array.from({ length: rollsNumber }, () => this.rollD(diceValue));
         console.log('Rolled:', rolls);
