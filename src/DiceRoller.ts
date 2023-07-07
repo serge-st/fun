@@ -1,4 +1,4 @@
-type DiceValues = 4 | 6 | 8 | 10 | 12 | 20;
+export type DiceValues = 4 | 6 | 8 | 10 | 12 | 20;
 
 export class DiceRoller {
     private static rollD(value: DiceValues): number {
@@ -7,10 +7,8 @@ export class DiceRoller {
 
     private static getResult(rollsNumber: number, diceValue: DiceValues): number {
         const rolls = Array.from({ length: rollsNumber }, () => this.rollD(diceValue));
-        console.log('Rolled:', rolls);
-
         const result = rolls.reduce((acc, curr) => acc + curr);
-        console.log('Final result:', result);
+        console.log('Rolled:', rolls, '=> Total:', result);
         return result;
     }
 
@@ -56,7 +54,7 @@ function logDiceRolls() {
             if (rollNumber === 1) {
                 console.log(`Rolling ${dice} once...`);
             } else {
-                console.log(`Rolling ${dice} ${rollNumber} times...`);
+                console.log(`Rolling ${dice}`, rollNumber, 'times...');
             }
             return originalMethod.apply(this, args);
         };
