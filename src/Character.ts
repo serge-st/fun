@@ -6,13 +6,21 @@ export abstract class Character {
     hitDice: DiceValues;
     hitpoints: number;
     damageDice: DiceValues;
+    damageRolls: number;
 
-    constructor(characterName: string, level: number = 1, hitDice: DiceValues = 8, damageDice: DiceValues = 4) {
+    constructor(
+        characterName: string,
+        level: number = 1,
+        hitDice: DiceValues = 8,
+        damageDice: DiceValues = 4,
+        damageRolls: number = 1,
+    ) {
         this.characterName = characterName;
         this.level = level;
         this.hitDice = hitDice;
         this.hitpoints = this.generateInitialHitpoints();
         this.damageDice = damageDice;
+        this.damageRolls = damageRolls;
     }
 
     generateInitialHitpoints(): number {
@@ -35,7 +43,7 @@ export abstract class Character {
 
     damage(): number {
         const diceGetterName: DiceRollerKeys = `getD${this.damageDice}`;
-        const result = DiceRoller[diceGetterName](1);
+        const result = DiceRoller[diceGetterName](this.damageRolls);
         console.log(`${this.characterName} caused`, result, 'damage')
         return result;
     }

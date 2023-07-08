@@ -5,7 +5,3 @@ export class Warrior extends Character {
         super(characterName, level, 10, 8);
     }
 }
-
-const bob = new Warrior('Bob', 1)
-console.log(bob)
-bob.damage()
