@@ -1,4 +1,4 @@
-import { DiceRoller, DiceRollerKeys, DiceValues } from './DiceRoller';
+import { DiceRoller, DiceRollerKeys, DiceValues } from '../utils/DiceRoller';
 
 export abstract class Character {
     characterName: string;
