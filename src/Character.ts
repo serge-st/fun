@@ -5,12 +5,14 @@ export abstract class Character {
     level: number;
     hitDice: DiceValues;
     hitpoints: number;
+    damageDice: DiceValues;
 
-    constructor(characterName: string, level: number = 1, hitDice: DiceValues = 8) {
+    constructor(characterName: string, level: number = 1, hitDice: DiceValues = 8, damageDice: DiceValues = 4) {
         this.characterName = characterName;
         this.level = level;
         this.hitDice = hitDice;
         this.hitpoints = this.generateInitialHitpoints();
+        this.damageDice = damageDice;
     }
 
     generateInitialHitpoints(): number {
@@ -21,6 +23,21 @@ export abstract class Character {
         const rollCount = this.level - 1;
         const diceGetterName: DiceRollerKeys = `getD${this.hitDice}`;
         return this.hitDice + DiceRoller[diceGetterName](rollCount);
+    }
+
+    attack(targetAC: number): boolean {
+        console.log(`${this.characterName} attacks AC`, targetAC)
+        const attack = DiceRoller.getD20(1);
+        const result = attack > targetAC ? true : false;
+        result ? console.log('Target hit!') : console.log('Missed...');
+        return result;
+    }
+
+    damage(): number {
+        const diceGetterName: DiceRollerKeys = `getD${this.damageDice}`;
+        const result = DiceRoller[diceGetterName](1);
+        console.log(`${this.characterName} caused`, result, 'damage')
+        return result;
     }
 }
 
