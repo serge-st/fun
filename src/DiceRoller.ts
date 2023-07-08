@@ -1,4 +1,5 @@
 export type DiceValues = 4 | 6 | 8 | 10 | 12 | 20;
+export type DiceRollerKeys = keyof typeof DiceRoller;
 
 export class DiceRoller {
     private static rollD(value: DiceValues): number {
