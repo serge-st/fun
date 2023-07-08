@@ -1,5 +1,4 @@
 import { Character } from './Character';
-import { DiceRoller } from './DiceRoller';
 
 export class Warrior extends Character {
     constructor(characterName: string, level: number = 1) {
