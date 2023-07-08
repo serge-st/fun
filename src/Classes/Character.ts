@@ -7,20 +7,26 @@ export abstract class Character {
     hitpoints: number;
     damageDice: DiceValues;
     damageRolls: number;
+    armorClass: number;
+    isAlive: boolean;
 
     constructor(
         characterName: string,
         level: number = 1,
         hitDice: DiceValues = 8,
+        armorClass: number,
         damageDice: DiceValues = 4,
         damageRolls: number = 1,
+        isAlive: boolean = true,
     ) {
         this.characterName = characterName;
         this.level = level;
         this.hitDice = hitDice;
         this.hitpoints = this.generateInitialHitpoints();
+        this.armorClass = armorClass;
         this.damageDice = damageDice;
         this.damageRolls = damageRolls;
+        this.isAlive = isAlive;
     }
 
     generateInitialHitpoints(): number {
@@ -41,11 +47,26 @@ export abstract class Character {
         return result;
     }
 
-    damage(): number {
+    causeDamage(): number {
         const diceGetterName: DiceRollerKeys = `getD${this.damageDice}`;
         const result = DiceRoller[diceGetterName](this.damageRolls);
         console.log(`${this.characterName} caused`, result, 'damage')
         return result;
+    }
+
+    receiveDamage(hits: number): void {
+        console.log(`${this.characterName} received`, hits, 'HP of damage');
+        this.hitpoints -= hits;
+        this.isAliveCheck();
+    }
+
+    isAliveCheck(): void {
+        if (this.hitpoints <= 0) {
+            console.log(`${this.characterName} dies...`);
+            this.isAlive = false;
+        } else {
+            console.log(`${this.characterName} has`, this.hitpoints, 'left');
+        }
     }
 }
 
