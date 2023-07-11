@@ -1,6 +1,6 @@
 import { DiceRoller, DiceRollerKeys, DiceValues } from '../utils/DiceRoller';
 
-export abstract class Character {
+export abstract class BaseClass {
     characterName: string;
     level: number;
     hitDice: DiceValues;
